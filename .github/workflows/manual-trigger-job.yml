@@ -15,4 +15,4 @@ jobs:
       uses: azure/login@v2
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-
+        $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.jsoncode: .command: >-  python train-model-parameters.py  --training_data ${{inputs.training_data}}  --reg_rate ${{inputs.reg_rate}}  --metrics_output ${{outputs.metrics_output}}inputs:  training_data:    type: https://github.com/nhusnaws/mslearn-mlops_husver.git     path: azureml:diabetes-data@latest  reg_rate: 0.01outputs:  metrics_output:    type: uri_folderenvironment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latestcompute: azureml:aml-clusterexperiment_name: diabetes-trainingdisplay_name: diabetes-train-commanddescription: diabetes training job
